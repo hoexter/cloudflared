@@ -90,7 +90,7 @@ publish-rpm: cloudflared-rpm
 define build_package
 	mkdir -p $(PACKAGE_DIR)
 	cp cloudflared $(PACKAGE_DIR)/cloudflared
-	cat cloudflared_man_template | sed -e 's/\$${VERSION}/$(VERSION)/; s/\$${DATE}/$(DATE)/' > $(PACKAGE_DIR)/cloudflared.1
+	sed -e 's/\$${VERSION}/$(VERSION)/; s/\$${DATE}/$(DATE)/' cloudflared_man_template > $(PACKAGE_DIR)/cloudflared.1
 	fakeroot fpm -C $(PACKAGE_DIR) -s dir -t $(1) --$(1)-compression bzip2 \
 		-a $(TARGET_ARCH) -v $(VERSION) -n cloudflared --after-install postinst.sh --after-remove postrm.sh \
 		cloudflared=$(INSTALL_BINDIR) cloudflared.1=$(MAN_DIR)
