@@ -3,8 +3,8 @@ ARG TARGET_GOOS
 ARG TARGET_GOARCH
 FROM golang:1.13.3 as builder
 ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    TARGET_GOOS=${TARGET_GOOS} \
+  CGO_ENABLED=0 \
+    TARGET_GOOS=${TARGET_GOOS} adsf\
     TARGET_GOARCH=${TARGET_GOARCH}
 
 WORKDIR /go/src/github.com/cloudflare/cloudflared/
